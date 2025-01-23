@@ -1,0 +1,46 @@
+#### general settings
+name: ir-sde
+suffix: ~  # add suffix to saved images
+model: denoising
+distortion: derain
+gpu_ids: [1]
+
+sde:
+  max_sigma: 30
+  T: 100
+  schedule: cosine
+  eps: 0.005
+
+degradation:
+  mask_root: /home/szx/project/StrDiffusion/DATA/mapdata/semmap_mask
+  
+  
+#### datasets
+datasets:
+  test1:
+    name: Val_Dataset
+    mode: GT
+    dataroot_GT: /home/szx/project/StrDiffusion/DATA/mapdata/semmap
+
+#### network structures
+network_G:
+  which_model_G: ConditionalUNet
+  setting:
+    in_nc: 3
+    out_nc: 3
+    nf: 64
+    depth: 4
+    
+network_Gs:
+  which_model_G: ConditionalUNets
+  setting:
+    in_nc: 1
+    out_nc: 1
+    nf: 64
+    depth: 4
+
+
+path:
+  pretrain_model_G: /home/szx/project/PEANUT/diffusion_models/G/new_G.pth
+  pretrain_model_Gs: /home/szx/project/PEANUT/diffusion_models/Gs/new_G.pth
+  pretrain_model_D: /home/szx/project/PEANUT/diffusion_models/D/new_D.pth
