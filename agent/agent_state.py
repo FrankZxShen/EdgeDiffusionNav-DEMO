@@ -500,7 +500,7 @@ class Agent_State:
             self.global_goals = [full_target_point_map[index]]
         else:
             actions = np.random.rand(1, 2).squeeze()*(480 - 1)
-            self.global_goals = [int(actions[0]), int(actions[1])]
+            self.global_goals = [[int(actions[0]), int(actions[1])]]
 
 
     def update_global_goal(self):
